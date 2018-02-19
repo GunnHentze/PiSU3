@@ -110,11 +110,8 @@ public class ArrayList implements List {
 		if(lower>=upper) {
 			return;
 		}
-		
+		// Giver først mening når vi har to elementer.
 		int partition = partition(lower, upper);
-		if(partition==-1) {
-			return;
-		}
 		//System.out.println(lower);
 		quicksort(lower, partition);
 		
@@ -122,39 +119,53 @@ public class ArrayList implements List {
 	}
 	
 	private int partition(int lower, int upper) {
-		if(lower>=upper) {
-			return -1;
-		}
+		int pivot = array[lower];
 		
-		int pivot = array[(lower+upper)/2];	
-		
-		//int pivot = array[(lower+upper)/2];
-		
-//		if(lower>(lower+upper)/2) {
-//			System.out.println("Adam sucks");
+//		while(array[lower]<pivot) {
+//			lower++;
 //		}
-		
-		
-		if(array[lower]<pivot && array[upper]>pivot) { 
-			return partition(lower+1, upper-1);
+		while(array[upper]>pivot) {
+			upper--;
 		}
-		else if(array[lower]>pivot && array[upper]<pivot) {
-			int temp = array[lower];
-			array[lower] = array[upper];
-			array[upper] = temp;
-			return partition(lower+1, upper-1);
+		if(upper<=lower) {
+			return upper;
 		}
-		else if(array[lower]>pivot) { 
-			return partition(lower, upper-1); 
+		int temp = array[lower];
+		array[lower] = array[upper];
+		array[upper] = temp;
+		upper--;
+		lower++;
+		return pivot;
 		}
-		else if(array[upper] < pivot) {
-			return partition(lower+1, upper);
-		}
-		else {
-			return pivot;
-		}
+//		int pivot = array[(lower+upper)/2];	
+//		
+//		//int pivot = array[(lower+upper)/2];
+//		
+////		if(lower>(lower+upper)/2) {
+////			System.out.println("Adam sucks");
+////		}
+//		
+//		
+//		if(array[lower]<pivot && array[upper]>pivot) { 
+//			return partition(lower+1, upper-1);
+//		}
+//		else if(array[lower]>pivot && array[upper]<pivot) {
+//			int temp = array[lower];
+//			array[lower] = array[upper];
+//			array[upper] = temp;
+//			return partition(lower+1, upper-1);
+//		}
+//		else if(array[lower]>pivot) { 
+//			return partition(lower, upper-1); 
+//		}
+//		else if(array[upper] < pivot) {
+//			return partition(lower+1, upper);
+//		}
+//		else {
+//			return pivot;
+//		}
 		 
-	}
+	
 
 	@Override
 	public int indexOf(Integer value) {
@@ -164,7 +175,7 @@ public class ArrayList implements List {
 		else {
 			for(int i=0; i<size;i++) {
 				if(array[i]==value)
-					return value;
+					return i;
 			}
 			return -1;
 		}

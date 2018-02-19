@@ -168,5 +168,22 @@ public abstract class TestList {
 
 		}
 	}
+	
+	@Test
+	public void testIndexOf() {
+		for(int i=0; i<=TESTLIMIT; i++) {
+			list.add(0, i);
+		}
+		list.sort();
+		
+		for(int i=0; i<=TESTLIMIT; i++) {
+			int value = list.indexOf(i);
+			
+			Assert.assertEquals(
+					"Wrong value at position " + i, 
+					i,
+					value);
+		}
+	}
 
 }
