@@ -110,7 +110,7 @@ public class ArrayList implements List {
 		if(lower>=upper) {
 			return;
 		}
-		// Giver først mening når vi har to elementer.
+		// Giver fï¿½rst mening nï¿½r vi har to elementer.
 		int partition = partition(lower, upper);
 		//System.out.println(lower);
 		quicksort(lower, partition);
@@ -165,7 +165,13 @@ public class ArrayList implements List {
 //			return pivot;
 //		}
 		 
+
 	
+	/** The method finds the position/index of an element in the list, by using binary search.
+	 * If the list is yet to be sorted, the method will use linear search.
+	 * Whether the list is sorted or not, is determined by the private attribute "sorted"
+	 * If the element is not found in the list, the method will return -1.
+	 */
 
 	@Override
 	public int indexOf(Integer value) {
